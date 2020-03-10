@@ -4,7 +4,14 @@
 $O365Cred = Get-Credential
 
 #Create connection to Exchange Online organization
-$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://outlook.office365.com/powershell-liveid/ -Credential $O365Cred -Authentication Basic -AllowRedirection
+$Args = @{
+    ConfigurationName = "Microsoft.Exchange"
+    ConnectionUri     = "https://outlook.office365.com/powershell-liveid/"
+    Credential        = $O365Cred
+    Authentication    = "Basic"
+}
+
+$Session = New-PSSession @Args -AllowRedirection
 
 #Load Exchange cmdlets on local computer
 
